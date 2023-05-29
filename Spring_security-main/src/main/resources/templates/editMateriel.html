@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Materiels</title>
+  <style>
+body {
+  background-image: url('/imgs/md.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="p-3">
+    <form method="post" th:action="@{saveMateriel}">
+      <div class="mb-3 mt-3">
+        <label for="id" class="form-label">ID:</label>
+        <label th:text="${materiel.id}"></label>
+        <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" th:value="${materiel.id}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="nom" class="form-label">Nom:</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" th:value="${materiel.nom}">
+        <span class="text-danger" th:errors="${materiel.nom}"></span>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="nom" class="form-label">Description:</label>
+        <input type="text" class="form-control" id="description" placeholder="Description" name="description" th:value="${materiel.description}">
+        <span class="text-danger" th:errors="${materiel.description}"></span>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="Prix" class="form-label">Prix:</label>
+        <input type="text" class="form-control" id="prix" placeholder="Prix"
+               name="prix" th:value="${materiel.prix}">
+        <span class="text-danger" th:errors="${materiel.prix}" th:value="${materiel.prix}"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

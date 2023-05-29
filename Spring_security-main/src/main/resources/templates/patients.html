@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des patients</title>
+  <style>
+        body {
+            background-image: url('/imgs/md.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="p-3">
+    <div class="card">
+      <div class="card-header">Liste des patients</div>
+      <div class="card-body">
+        <form method="get" th:href="@{/user/index}">
+          <ul class="nav nav-pills">
+            <li>
+              <label class="form-label">Keyword:</label>
+            </li>
+            <li>
+              <input type="text" class="form-control" name="keyword">
+            </li>
+            <li>
+              <button class="btn btn-info">
+                <i class="bi bi-search"></i>
+              </button>
+            </li>
+          </ul>
+        </form>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Date de Naissance</th>
+            <th>Malade</th>
+            <th>Score</th>
+            <th>Rendez-vous</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="patient : ${listPatients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.nom}"></td>
+            <td th:text="${patient.dateNaissance}"></td>
+            <td th:text="${patient.malade}"></td>
+            <td th:text="${patient.score}"></td>
+            <td>
+              <a class="btn btn-primary" th:href="@{/user/appointments(patientId=${patient.id})}">
+                Voir les rendez-vous
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <ul class="nav nav-pills">
+          <li th:each="page, status : ${pages}">
+            <a th:class="${status.index == currentPage ? 'btn btn-info ms-1' : 'btn btn-outline-info ms-1'}"
+               th:href="@{/user/index(page=${status.index}, keyword=${keyword})}"
+               th:text="${status.index}">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

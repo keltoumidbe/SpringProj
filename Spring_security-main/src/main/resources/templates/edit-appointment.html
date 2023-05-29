@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un rendez-vous</title>
+</head>
+<body>
+<h1>Modifier un rendez-vous</h1>
+
+<form action="/appointments/update/{id}" method="post">
+  <label>Date :</label>
+  <input type="datetime-local" name="appointmentDateTime" th:value="${appointment.appointmentDateTime}" required>
+
+  <label>Doctor:</label>
+  <select name="doctorId" required>
+    <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}" th:selected="${doctor.id == appointment.doctor.id}"></option>
+  </select>
+
+  <label>Patient:</label>
+  <select name="patientId" required>
+    <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}" th:selected="${patient.id == appointment.patient.id}"></option>
+  </select>
+
+  <button type="submit">Enregistrer</button>
+</form>
+</body>
+</html>

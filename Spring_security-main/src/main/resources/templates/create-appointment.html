@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Patients Patients</title>
+  <style>
+body {
+  background-image: url('/imgs/md.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="p-3">
+    <form method="post" th:action="@{saveRDV}">
+      <div class="mb-3 mt-3">
+        <label for="date" class="form-label">Data:</label>
+        <input type="date" class="form-control" id="date" placeholder="date" name="date">
+        <span class="text-danger" th:errors="${appointment.date}" th:value="${appointment.date}"></span>
+      </div>
+      <div class="mb-3">
+        <label for="doctor" class="form-label">Doctor:</label>
+        <input type="text" class="form-control" id="doctor" placeholder="doctor"
+               name="doctor" th:value="${appointment.doctor}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="patient" class="form-label">Patient :</label>
+        <input type="text" class="form-control" id="patient" placeholder="patient"
+               name="patient" th:value="${appointment.patient}">
+        <span class="text-danger" th:errors="${appointment.patient}" th:value="${appointment.patient}"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

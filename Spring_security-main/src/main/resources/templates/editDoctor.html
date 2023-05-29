@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Doctors</title>
+  <style>
+body {
+  background-image: url('/imgs/md.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="p-3">
+    <form method="post" th:action="@{saveDoctor}">
+      <div class="mb-3 mt-3">
+        <label for="id" class="form-label">ID:</label>
+        <label th:text="${doctor.id}"></label>
+        <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" th:value="${doctor.id}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="nom" class="form-label">Nom:</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" th:value="${doctor.nom}">
+        <span class="text-danger" th:errors="${doctor.nom}"></span>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="prenom" class="form-label">Prenom:</label>
+        <input type="text" class="form-control" id="prenom" placeholder="Prenom" name="prenom" th:value="${doctor.prenom}">
+        <span class="text-danger" th:errors="${doctor.prenom}"></span>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="specialite" class="form-label">Specialité:</label>
+        <input type="text" class="form-control" id="specialite" placeholder="Specialité"
+               name="specialite" th:value="${doctor.specialite}">
+        <span class="text-danger" th:errors="${doctor.specialite}" th:value="${doctor.specialite}"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

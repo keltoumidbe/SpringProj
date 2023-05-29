@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un réceptionniste</title>
+</head>
+<body>
+<h1>Modifier un réceptionniste</h1>
+
+<form action="/receptionists/update/{id}" method="post">
+  <label>Nom:</label>
+  <input type="text" name="name" th:value="${receptionist.name}" required>
+
+  <label>Adresse e-mail:</label>
+  <input type="email" name="email" th:value="${receptionist.email}" required>
+
+  <button type="submit">Enregistrer</button>
+</form>
+</body>
+</html>
