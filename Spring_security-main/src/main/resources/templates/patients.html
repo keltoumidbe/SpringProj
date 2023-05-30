@@ -40,8 +40,8 @@
             <th>Nom</th>
             <th>Date de Naissance</th>
             <th>Malade</th>
-            <th>Score</th>
             <th>Rendez-vous</th>
+          </tr>
           </tr>
           </thead>
           <tbody>
@@ -50,12 +50,22 @@
             <td th:text="${patient.nom}"></td>
             <td th:text="${patient.dateNaissance}"></td>
             <td th:text="${patient.malade}"></td>
-            <td th:text="${patient.score}"></td>
+
             <td>
-              <a class="btn btn-primary" th:href="@{/user/appointments(patientId=${patient.id})}">
+              <a class="btn btn-primary" th:href="@{/admin/index/appointments/{patientId}(patientId=${patient.id})}">
                 Voir les rendez-vous
               </a>
             </td>
+            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+            <a onclick="return confirm('Etes vous sûre?')" class="btn btn-danger"
+               th:href="@{/admin/deletePatient(id=${patient.id})}">
+              <i class="bi bi-trash"></i>
+            </a>
+              <a  class="btn btn-danger"
+                       th:href="@{/admin/editPatient(id=${patient.id})}" >
+              <i class="bi bi-pencil"></i>
+            </a>
+          </td>
           </tr>
           </tbody>
         </table>

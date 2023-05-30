@@ -40,6 +40,7 @@ body {
           <thead>
           <tr>
             <th>ID</th><th>Nom</th><th>Prenom</th><th>Specialité</th>
+
           </tr>
           </thead>
           <tbody>
@@ -53,8 +54,7 @@ body {
                  th:href="@{/admin/deleteDoctor(id=${p.id})}">
                 <i class="bi bi-trash"></i>
               </a>
-            </td>
-            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+
               <a  class="btn btn-danger"
                   th:href="@{/admin/editDoctor(id=${p.id})}" >
                 <i class="bi bi-pencil"></i>
@@ -64,6 +64,7 @@ body {
           </tr>
           </tbody>
         </table>
+
         <ul class="nav nav-pills">
           <li th:each="page,status:${pages}">
             <a
@@ -73,6 +74,7 @@ body {
             </a>
           </li>
         </ul>
+
       </div>
     </div>
   </div>

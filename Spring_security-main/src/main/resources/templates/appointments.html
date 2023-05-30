@@ -31,20 +31,11 @@ body {
           <tr th:each="p:${appointments}">
             <td th:text="${p.id}"></td>
             <td th:text="${p.date}"></td>
-            <td th:text="${p.doctor}"></td>
-            <td th:text="${p.patient}"></td>
-            <!--<td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-              <a onclick="return confirm('Etes vous sûre?')" class="btn btn-danger"
-                 th:href="@{/admin/deleteDoctor(id=${p.id})}">
-                <i class="bi bi-trash"></i>
-              </a>
-            </td>
-            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-              <a  class="btn btn-danger"
-                  th:href="@{/admin/editDoctor(id=${p.id})}" >
-                <i class="bi bi-pencil"></i>
-              </a>
-            </td>-->
+            <td th:text="${p.doctor.nom}"></td> <!-- Assuming 'name' is an attribute of the Doctor class -->
+            <td th:text="${p.patient.nom}"></td> <!-- Assuming 'name' is an attribute of the Patient class -->
+          </tr>
+
+
 
           </tr>
           </tbody>
